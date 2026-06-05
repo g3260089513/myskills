@@ -14,7 +14,7 @@
 
 | 技能 | 描述 |
 |------|------|
-| *(github项目维护 — 待添加)* | |
+| [github-project-maintenance](maintenance/github-project-maintenance/) | GitHub 项目维护 —— 规范对自己项目和他人项目的修改流程，包括分支管理、冲突解决和提交规范 |
 
 ## 安装
 
@@ -23,9 +23,10 @@
 ```powershell
 # 安装单个技能
 Copy-Item -Path "recording/workflow-recorder" -Destination "$env:USERPROFILE\.claude\skills\workflow-recorder" -Recurse -Force
+Copy-Item -Path "maintenance/github-project-maintenance" -Destination "$env:USERPROFILE\.claude\skills\github-project-maintenance" -Recurse -Force
 ```
 
-安装后在 Claude Code 中输入 `/workflow-recorder` 即可使用。
+安装后在 Claude Code 中输入 `/workflow-recorder` 或 `/github-project-maintenance` 即可使用。
 
 ## 目录结构
 
@@ -38,5 +39,7 @@ myskills/
 │       └── templates/
 │           └── report-template.md
 └── maintenance/                  # 维护类
-    └── (更多技能...)
+    ├── README.md
+    └── github-project-maintenance/   # GitHub 项目维护
+        └── SKILL.md
 ```
