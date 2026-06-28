@@ -1,7 +1,6 @@
 ---
 name: game-review-writer
 description: 结合用户个人体验与网络搜索，撰写深度分析型游戏评测（MDX格式）。读取现有评测学习写作风格，搜索游戏机制和玩家社区评价，按项目约定生成完整评测文件。Use when 用户要求撰写游戏评测、新增游戏测评、创建游戏评测内容、讨论某款游戏的评价，或更新已有评测。
-origin: custom
 ---
 
 # 游戏评测写作
@@ -52,18 +51,29 @@ origin: custom
 - **不要过度总结**：不要用一两句话概括一次大版本更新——保留原文的逐项拆解和具体数据
 - **更新日期**：每次更新评测必须更新 `updatedAt` 字段为当前日期
 
-### 5. 用户审阅
-等待用户审阅草案。根据反馈调整正文、评分或 frontmatter。可以多轮迭代直到满意。
+### 5. 修改确认
+在对话中展示完整评测草案后，**必须主动询问用户**：
 
-### 6. 写入文件
-用户确认后，写入 `content/game-reviews/{slug}.mdx`：
+> 评测文章是否需要修改？
+
+根据用户反馈调整正文、评分或 frontmatter。可以多轮迭代直到用户满意。**用户明确表示"没问题"或"可以"之后，才能进入下一步。**
+
+### 6. 配图确认
+修改确认通过后，**必须主动询问用户**：
+
+> 是否有图片需要添加到评测中？
+
+- 如果用户提供图片：将图片放入 `public/images/game-reviews/{slug}/`，更新 frontmatter 的 `images` 字段，然后进入第 7 步
+- 如果用户没有图片：`images` 设为 `[]`，进入第 7 步
+
+### 7. 写入文件并推送
+配图确认后，写入 `content/game-reviews/{slug}.mdx`：
 - slug：英文游戏名 kebab-case（如 `cyberpunk-2077`），中文游戏由用户指定
-- images：设为 `["/images/game-reviews/{slug}/cover.jpg"]`
+- images：根据第 6 步的结果填写——有图片则列出路径，无图片则 `[]`
 - 新建评测：`draft: false`
 - 更新评测：保留原 `publishedAt`，更新 `updatedAt` 为当前日期
 
-### 7. 配图提醒
-提醒用户在 `public/images/game-reviews/{slug}/` 放置封面图。
+写入后立即 `git add` + `git commit` + `git push`，提交信息格式 `feat: 新增《游戏名》游戏评测`。
 
 ## 模型建议
 
